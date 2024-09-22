@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Client Information</h2>
+<div mat-dialog-content>
+  <p><strong>First Name:</strong> {{ data.client.firstName }}</p>
+  <p><strong>Last Name:</strong> {{ data.client.lastName }}</p>
+  <p><strong>Phone Number:</strong> {{ data.client.phoneNumber }}</p>
+  <p><strong>Email:</strong> {{ data.client.email || 'Not provided' }}</p>
+  <p><strong>Active:</strong> {{ data.client.isActive ? 'Yes' : 'No' }}</p>
+  <p><strong>Registration Date:</strong> {{ data.client.registrationDate | date }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>

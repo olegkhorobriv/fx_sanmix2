@@ -1,0 +1,54 @@
+<form [formGroup]="form" (submit)="submit()">
+  <mat-card class="m-auto w-30">
+    <mat-card-title>
+      <div class="logo-title">
+        <img src="/assets/logo.png" alt="" class="logo">
+        <span>Sanmix</span>
+      </div>
+      <div>
+        {{isLogin ? 'Вхід' : 'Реєстрація'}}
+      </div>
+    </mat-card-title>
+
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Пароль</mat-label>
+          <input [type]="showPwd ? 'text' : 'password'" matInput formControlName="password">
+          <ng-icon matSuffix class="mr-1" name="ion-eye{{showPwd ? '' : '-off'}}-outline" (click)="showPwd = !showPwd"></ng-icon>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="form.controls.passwordConfirm.hasValidator(validatorRequired)">
+        <mat-form-field appearance="outline">
+          <mat-label>Повтор пароля</mat-label>
+          <input [type]="showPwd ? 'text' : 'password'" matInput formControlName="passwordConfirm">
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="form.controls.username.hasValidator(validatorRequired)">
+        <mat-form-field appearance="outline">
+          <mat-label>Ім'я (видиме для інших користувачів)</mat-label>
+          <input type="text" matInput formControlName="username">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-flat-button>{{isLogin ? 'Увійти' : 'Зареєструватись'}}</button>
+      </div>
+
+      <div class="mt-3">
+        <a href="auth/register" *ngIf="isLogin">Реєстрація</a>
+        <a href="auth/login" *ngIf="!isLogin">Вхід</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</form>

@@ -1,0 +1,25 @@
+<!-- users.component.html -->
+<mat-toolbar color="primary">
+  <span>Users</span>
+</mat-toolbar>
+
+<div class="user-page-container">
+
+  <div class="mb-3">
+    <app-users-filters (filterRes)="filter($event)"></app-users-filters>
+
+    <button mat-stroked-button color="primary" (click)="create()"  *ngIf="isAdmin">Створити користувача</button>
+  </div>
+
+  <div class="mb-3">
+    <app-users-table [data]="users"></app-users-table>
+  </div>
+
+  <div>
+    <mat-paginator [length]="page.total"
+                   [pageSize]="page.size"
+                   [pageSizeOptions]="pageOptions"
+    >
+    </mat-paginator>
+  </div>
+</div>

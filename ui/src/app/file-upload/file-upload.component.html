@@ -1,0 +1,24 @@
+<!-- src/app/components/file-upload/file-upload.component.html -->
+<mat-toolbar color="primary">
+  <span>File Upload</span>
+</mat-toolbar>
+
+<div class="upload-container">
+  <input #fileInput type="file" (change)="selectFile($event)" />
+  <button mat-raised-button color="primary" (click)="runImport()" [disabled]="!canImport">Імпорт</button>
+</div>
+
+<div *ngIf="loading" class="mb-3">
+  <mat-progress-bar
+    [mode]="mode"
+    [value]="load">
+  </mat-progress-bar>
+</div>
+
+<div *ngIf="showNew">
+  Створено нових категорій: {{newCats}}
+</div>
+
+<div *ngIf="showNew">
+  Додано товарів: {{newItems}}
+</div>

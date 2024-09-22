@@ -1,0 +1,29 @@
+<div class="dashboard-container">
+  <!-- Статистика -->
+  <div class="stats-container">
+    <div *ngFor="let stat of stats" class="stat-item">
+      <span class="stat-title">{{ stat.title }}</span>
+      <span class="stat-value">{{ stat.value }}</span>
+    </div>
+  </div>
+
+  <!-- To-Do List -->
+  <div class="todo-list">
+    <h3>To-Do List</h3>
+    <div *ngFor="let task of tasks; let i = index" class="task-item" [class.completed]="task.completed">
+      <mat-checkbox (change)="toggleTaskCompletion(i)">{{ i + 1 }}. {{ task.description }}</mat-checkbox>
+      <div class="underline"></div>
+    </div>
+  </div>
+
+  <!-- Блок сповіщень -->
+  <div class="notifications-list">
+    <h3>Сповіщення</h3>
+    <button (click)="sortNotificationsByDate()"> Сортувати за датою</button>
+    <div *ngFor="let notification of notifications; let i = index" class="notification-item">
+      {{ i + 1 }}. {{ notification.text }}
+      <span class="notification-date">  {{ notification.date | date: 'yyyy-MM-dd' }}</span>
+      <div class="underline"></div>
+    </div>
+  </div>
+</div>

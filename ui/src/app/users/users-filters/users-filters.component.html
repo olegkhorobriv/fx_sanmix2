@@ -1,0 +1,21 @@
+<div class="mb-3">
+  <mat-form-field appearance="outline" class="mr-3">
+    <mat-label>Пошук по Email</mat-label>
+    <input matInput [(ngModel)]="filter.email">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="mr-3">
+    <mat-label>Пошук по Юзернейму</mat-label>
+    <input matInput [(ngModel)]="filter.username">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="mr-3">
+    <mat-label>Фільтр по Ролі</mat-label>
+    <mat-select [(ngModel)]="filter.role" multiple>
+      <mat-option *ngFor="let role of roles" [value]="role.value">{{role.label}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary" (click)="emit()" class="mr-3">Пошук</button>
+  <button mat-stroked-button (click)="clearFilter()">Очистити</button>
+</div>

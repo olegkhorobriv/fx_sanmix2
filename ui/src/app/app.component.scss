@@ -1,0 +1,45 @@
+/* Основний контейнер для sidenav та контенту */
+.sidenav-container {
+  display: flex;
+  height: 100vh; /* Займаємо всю висоту вікна */
+}
+
+/* Визначаємо стилі для бічної панелі */
+mat-sidenav {
+  width: 200px;
+  height: 100%; /* Займаємо всю висоту контейнера */
+  padding: 200px;
+}
+
+/* Основний контент повинен займати залишковий простір */
+mat-sidenav-content {
+  flex-grow: 1;
+  padding-top: 64px; /* Висота toolbar */
+  height: 100vh;
+}
+
+/* Стилі для toolbar */
+mat-toolbar {
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  top: 0;
+  height: 100vh;
+}
+
+/* Основний контент повинен мати відступ зверху для toolbar */
+.main-content {
+  padding: 20px;
+  height: 100vh;
+  margin-top: 64px; /* Відступ для toolbar */
+
+}
+footer.footer {
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  flex-shrink: 0;
+}

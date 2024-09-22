@@ -1,0 +1,55 @@
+
+<!-- reports.component.html -->
+<mat-toolbar color="primary">
+  <span>Reports</span>
+</mat-toolbar>
+
+<div class="reports-page-container">
+  <div class="reports-toolbar">
+    <mat-form-field appearance="fill">
+      <mat-label>From Date</mat-label>
+      <input matInput [matDatepicker]="fromPicker" [(ngModel)]="fromDate">
+      <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+      <mat-datepicker #fromPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>To Date</mat-label>
+      <input matInput [matDatepicker]="toPicker" [(ngModel)]="toDate">
+      <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+      <mat-datepicker #toPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Report Type</mat-label>
+      <mat-select [(ngModel)]="selectedReportType">
+        <mat-option value="product">Product Report</mat-option>
+        <mat-option value="productByAddress">Product Report by Address</mat-option>
+        <mat-option value="user">User Report</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="selectedReportType === 'productByAddress'">
+      <mat-label>Select Address</mat-label>
+      <mat-select [(ngModel)]="selectedAddress">
+        <mat-option *ngFor="let address of addresses" [value]="address">{{ address }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="selectedReportType === 'product'">
+      <mat-label>Select Product</mat-label>
+      <mat-select [(ngModel)]="selectedProduct">
+        <mat-option *ngFor="let product of products" [value]="product.name">{{ product.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="selectedReportType === 'user'">
+      <mat-label>Select User</mat-label>
+      <mat-select [(ngModel)]="selectedUser">
+        <mat-option *ngFor="let user of users" [value]="user.name">{{ user.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="generateReport()">Generate Report</button>
+  </div>
+</div>

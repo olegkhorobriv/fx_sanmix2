@@ -1,0 +1,29 @@
+<div class="settings-container">
+   <form [formGroup]="taskForm" (ngSubmit)="onSubmitTask()">
+     <mat-form-field appearance="fill">
+       <mat-label>Опис завдання</mat-label>
+       <textarea matInput formControlName="description" rows="4" required></textarea>
+     </mat-form-field>
+ 
+     <mat-form-field appearance="fill">
+       <mat-label>Дата завершення</mat-label>
+       <input matInput [matDatepicker]="picker" formControlName="dueDate" required>
+       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+       <mat-datepicker #picker></mat-datepicker>
+     </mat-form-field>
+ 
+     <button mat-raised-button color="primary" type="submit">Додати завдання</button>
+   </form>
+ 
+   <div style="margin-top: 20px;"></div> <!-- Відступ між формами -->
+ 
+   <form [formGroup]="notificationForm" (ngSubmit)="onSubmitNotification()">
+     <mat-form-field appearance="fill">
+       <mat-label>Сповіщення</mat-label>
+       <textarea matInput formControlName="message" rows="4" required></textarea>
+     </mat-form-field>
+     
+     <button mat-raised-button color="primary" type="submit">Додати сповіщення</button>
+   </form>
+ </div>
+ 

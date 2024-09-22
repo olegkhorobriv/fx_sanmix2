@@ -1,0 +1,10 @@
+/* reports.component.css */
+.reports-page-container {
+  padding: 20px;
+}
+
+.reports-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}

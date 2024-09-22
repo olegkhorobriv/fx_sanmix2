@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Product Details</h2>
+<div mat-dialog-content>
+  <p><strong>ID:</strong> {{data.id}}</p>
+  <p><strong>Vendor:</strong> {{data.Vendor?.name}}</p>
+  <p><strong>Full Title:</strong> {{data.fullTitle}}</p>
+  <p><strong>Description:</strong> {{data.description}}</p>
+  <p><strong>Comment:</strong> {{data.comment}}</p>
+  <p><strong>Type:</strong> {{data.type}}</p>
+  <p><strong>Unit:</strong> {{data.unit}}</p>
+  <p><strong>Tax:</strong> {{data.tax}}</p>
+  <p><strong>Category:</strong> {{data.Category?.name}}</p>
+  <p><strong>Price:</strong> {{data.price | currency}}</p>
+  <p><strong>Stock Count:</strong> {{data.stockCount}}</p>
+  <p><strong>Created At:</strong> {{data.createdAt | date:'short'}}</p>
+  <p><strong>Updated At:</strong> {{data.updatedAt | date:'short'}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>

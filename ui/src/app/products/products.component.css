@@ -1,0 +1,23 @@
+/* products.component.css */
+.product-page-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.product-toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+}

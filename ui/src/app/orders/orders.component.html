@@ -1,0 +1,50 @@
+
+<mat-toolbar color="primary">
+  <span>Orders</span>
+</mat-toolbar>
+
+<div class="orders-page-container">
+  <div class="orders-toolbar">
+    <mat-form-field appearance="fill">
+      <mat-label>Filter by Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="filterDate" (ngModelChange)="applyFilters()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Filter by Status</mat-label>
+      <mat-select [(ngModel)]="filterStatus" (selectionChange)="applyFilters()">
+        <mat-option value="">All</mat-option>
+        <mat-option value="completed">Completed</mat-option>
+        <mat-option value="pending">Pending</mat-option>
+        <!-- Додаткові статуси -->
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Filter by City</mat-label>
+      <input matInput [(ngModel)]="filterCity" placeholder="City" (ngModelChange)="applyFilters()">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="clearFilters()">Clear Filters</button>
+  </div>
+
+  <div class="orders-list">
+    <mat-card *ngFor="let order of filteredOrders" class="order-card">
+      <mat-card-header>
+        <mat-card-title>Order ID: {{ order.id }}</mat-card-title>
+        <mat-card-subtitle>{{ order.date }} - {{ order.city }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Status: {{ order.status }}</p>
+        <!-- Інші деталі замовлення -->
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="editOrder(order)">Edit</button>
+        <button mat-button (click)="deleteOrder(order)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+

@@ -1,0 +1,71 @@
+<section *ngIf="loading">
+  <mat-progress-spinner
+    style="margin: 5rem auto"
+    [mode]="'indeterminate'"
+    [value]="50">
+  </mat-progress-spinner>
+</section>
+
+<section *ngIf="!loading">
+  <div class="dialog-header">
+    <h3 mat-dialog-title>{{header}}</h3>
+    <button mat-flat-button (click)="close()">X</button>
+  </div>
+
+  <div class="p-3" *ngIf="!data?.edit">
+    <div class="mb-3">
+      <strong class="mr-2">Юзернейм: </strong>
+      <span>{{fg.controls.username.value}}</span>
+    </div>
+
+    <div class="mb-3">
+      <strong class="mr-2">Email: </strong>
+      <span>{{fg.controls.email.value}}</span>
+    </div>
+
+    <div class="mb-3">
+      <strong class="mr-2">Роль: </strong>
+      <span>{{fg.controls.role.value}}</span>
+    </div>
+  </div>
+
+  <div class="p-3" *ngIf="data?.edit">
+    <form [formGroup]="fg">
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Юзернейм</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+      </div>
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email">
+        </mat-form-field>
+      </div>
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Пароль</mat-label>
+          <input matInput type="password" formControlName="password" autocomplete="new-password">
+        </mat-form-field>
+      </div>
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline" class="mr-3">
+          <mat-label>Роль</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-stroked-button color="primary" (click)="save()" class="mr-3">Зберегти</button>
+      </div>
+
+    </form>
+  </div>
+</section>

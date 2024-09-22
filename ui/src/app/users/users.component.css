@@ -1,0 +1,23 @@
+/* users.component.css */
+.user-page-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.user-toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.user-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+}

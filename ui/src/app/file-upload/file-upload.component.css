@@ -1,0 +1,23 @@
+/* src/app/components/file-upload/file-upload.component.css */
+.upload-container {
+  padding: 20px;
+}
+
+.upload-container h3 {
+  margin-top: 20px;
+}
+
+.upload-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.upload-container li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.upload-container button {
+  margin-left: 10px;
+}

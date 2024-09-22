@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  role       Role     @default(CLIENT)
+  username   String   @unique
+  email      String   @unique
+  password   String
+  createdAt  DateTime
+  manageShop Int?
+  Shop       Shop?    @relation(fields: [manageShop], references: [id])
+}
+
+
+model Client {
+  id             Int      @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  phoneNumber    String
+  email          String?  @unique
+  isActive       Boolean  @default(true)
+  registrationAt DateTime @default(now())
+}
+
+
+model Shop {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  address  String?
+  meta     String?
+  Managers User[]
+}
+
+model Category {
+  id            Int        @id @default(autoincrement())
+  name          String
+  key           String
+  parentId      Int?       @default(0)
+  Parent        Category?  @relation("SubCategories", fields: [parentId], references: [id])
+  SubCategories Category[] @relation("SubCategories")
+  Items         Item[]
+}
+
+
+model Vendor {
+  id      String  @id @default(uuid())
+  name    String
+  desc    String?
+  comment String?
+  Items   Item[]
+}
+
+model Item {
+  id          String   @id @default(uuid())
+  code1C      String?
+  dealerCode  String?
+  vendorId    String?
+  title       String
+  fullTitle   String?
+  description String?
+  comment     String?
+  type        String?  @default("товар")
+  unit        String   @default("шт")
+  tax         Decimal  @default(20)
+  categoryId  Int
+  price       Decimal  @default(0)
+  stockCount  Decimal  @default(0)
+  dealerId    String?
+  createdAt   DateTime
+  updatedAt   DateTime @updatedAt 
+  updatedBy   Int
+
+  Category Category @relation(fields: [categoryId], references: [id])
+  Vendor   Vendor?  @relation(fields: [vendorId], references: [id])
+}
+
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  text        String
+  createdAt   DateTime @default(now())
+  dueDate     DateTime
+  completed    Boolean  @default(false) // Поле для позначення виконаного завдання
+}
+
+
+model Notification {
+  id          Int      @id @default(autoincrement())
+  text        String
+  createdAt   DateTime @default(now())
+}
+
+
+
+enum Role {
+  ADMIN
+  MANAGER
+  CLIENT
+}

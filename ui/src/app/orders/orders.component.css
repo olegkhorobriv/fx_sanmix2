@@ -1,0 +1,20 @@
+
+.orders-page-container {
+  padding: 20px;
+}
+
+.orders-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.orders-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.order-card {
+  width: 300px;
+}

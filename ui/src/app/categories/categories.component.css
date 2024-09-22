@@ -1,0 +1,23 @@
+/* categories.component.css */
+.category-page-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.category-toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,120 @@
+{
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "ui/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "preserveSymlinks": true,
+        "outputPath": "dist/ui",
+        "index": "ui/src/index.html",
+        "main": "ui/src/main.ts",
+        "polyfills": "ui/src/polyfills.ts",
+        "tsConfig": "ui/tsconfig.app.json",
+        "assets": [
+          "ui/src/assets",
+          {
+            "glob": "**/*",
+            "input": "ui/src/assets",
+            "output": "./../assets/"
+          }
+        ],
+        "styles": [
+          "@angular/material/prebuilt-themes/indigo-pink.css",
+          "ui/src/styles.scss"
+        ],
+        "scripts": [],
+        "vendorChunk": true,
+        "extractLicenses": false,
+        "buildOptimizer": false,
+        "sourceMap": true,
+        "optimization": false,
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "ui/src/environments/environment.ts",
+              "with": "ui/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        },
+        "local": {
+          "fileReplacements": [
+            {
+              "replace": "ui/src/environments/environment.ts",
+              "with": "ui/src/environments/environment.local.ts"
+            }
+          ]
+        }
+      },
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": ""
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "ui:build",
+        "proxyConfig": "ui/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "ui:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "ui/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "eslintConfig": ".eslintrc.js",
+        "jestConfig": "ui/jest.config.ts",
+        "passWithNoTests": true,
+        "exclude": [
+          "**/node_modules/**"
+        ]
+      },
+      "outputs": [
+        "{workspaceRoot}/coverage/ui"
+      ]
+    }
+  },
+  "tags": [],
+  "name": "ui"
+}

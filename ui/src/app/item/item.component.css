@@ -1,0 +1,32 @@
+table {
+   width: 100%;
+ }
+ 
+ th {
+   text-align: left;
+ }
+ 
+ td, th {
+   padding: 8px;
+ }
+ 
+ button {
+   margin-left: 8px;
+ }
+ 
+ /* Додайте в файл стилів вашого компонента */
+
+.search-field {
+  width: 300px; /* Встановіть ширину поля за необхідності */
+  margin-right: 16px; /* Відступ справа для відстані до кнопки */
+}
+
+.add-product-button {
+  background-color: #1976d2; /* Синій колір */
+  color: white; /* Колір тексту */
+  margin-left: 16px; /* Відступ зліва */
+  
+  &:hover {
+    background-color: #1565c0; /* Темніший синій колір при наведенні */
+  }
+}

@@ -1,0 +1,55 @@
+@import "./ui/src/assets/styles/colors";
+
+:host {
+  display: block;
+
+  a {
+    text-decoration: none;
+    color: $secondary_color;
+  }
+
+  button {
+    background-color: $secondary_color!important;
+    color: white!important;
+    font-weight: bold;
+  }
+
+  .m-auto {
+    margin: 0 auto;
+  }
+
+  .w-30 {
+    width: 30rem;
+  }
+
+  .mt-3 {
+    margin-top: 1rem
+  }
+
+  mat-card {
+    margin-top: 2rem!important;
+    text-align: center;
+
+    mat-form-field, button {
+      width: 25rem;
+    }
+  }
+
+  .logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    font-weight: bold;
+
+
+    .logo {
+      height: 50px;
+      margin-right: 2rem;
+    }
+  }
+
+  .mr-1 {
+    margin-right: 1rem;
+  }
+}

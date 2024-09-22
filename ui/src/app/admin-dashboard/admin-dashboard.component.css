@@ -1,0 +1,75 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-title {
+  font-weight: bold;
+}
+
+.stat-value {
+  color: #007bff;
+}
+
+.todo-list, .notifications-list {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-item, .notification-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.notification-date {
+  margin-left: auto;
+  font-size: 14px;
+  color: #666;
+  margin-left: 10px;
+}
+
+.underline {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ddd;
+  margin-left: 10px;
+}
+
+h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
