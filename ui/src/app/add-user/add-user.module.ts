@@ -39,6 +39,7 @@ import { ClientAddDialogComponent } from './client-add-dialog/client-add-dialog.
     MatCardModule,
     MatToolbarModule,
     MatPaginatorModule,
+    
   ],
 })
 export class AddUserModule {}

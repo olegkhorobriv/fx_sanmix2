@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ClientService } from '../services/client.service'; // Додай імпорт сервісу
 import { ClientViewDialogComponent } from './client-view-dialog/client-view-dialog.component';
 import { ClientEditDialogComponent } from './client-edit-dialog/client-edit-dialog.component';
 import { ClientAddDialogComponent } from './client-add-dialog/client-add-dialog.component';
-
 
 @Component({
   selector: 'app-add-user',
@@ -14,20 +14,30 @@ export class AddUserComponent implements OnInit {
   clients = [];
   displayedColumns: string[] = ['firstName', 'lastName', 'phoneNumber', 'actions'];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private clientService: ClientService) {} // Додай сервіс у конструктор
 
   ngOnInit(): void {
-    // Fetch clients data from backend
     this.fetchClients();
   }
 
   fetchClients(): void {
-    // Тут буде запит до бекенду для отримання клієнтів
+    this.clientService.getAllClients().subscribe(
+      (data) => {
+        this.clients = data; // Заповнюємо масив клієнтів
+      },
+      (error) => {
+        console.error('Error fetching clients', error); // Логування помилки
+      }
+    );
   }
 
   applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    // Логіка для пошуку
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    this.clients = this.clients.filter(client => 
+      client.firstName.toLowerCase().includes(filterValue) ||
+      client.lastName.toLowerCase().includes(filterValue) ||
+      client.phoneNumber.includes(filterValue)
+    );
   }
 
   viewClient(client: any): void {
@@ -40,7 +50,7 @@ export class AddUserComponent implements OnInit {
     const dialogRef = this.dialog.open(ClientEditDialogComponent, {
       data: { client },
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Логіка для оновлення клієнта
@@ -49,26 +59,16 @@ export class AddUserComponent implements OnInit {
   }
 
   confirmDeleteClient(client: any): void {
-    // const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-    //   data: { message: 'Are you sure you want to delete this client?' },
-    // });
-  
-    // dialogRef.afterClosed().subscribe(confirmed => {
-    //   if (confirmed) {
-    //     // Логіка для видалення клієнта
-    //   }
-    // });
+    // Логіка для видалення клієнта
   }
 
   openAddUserDialog(): void {
     const dialogRef = this.dialog.open(ClientAddDialogComponent);
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Логіка для додавання нового клієнта
+        this.fetchClients(); // Оновлюємо список після додавання нового клієнта
       }
     });
   }
-
-
 }

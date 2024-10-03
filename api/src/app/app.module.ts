@@ -13,6 +13,9 @@ import {AuthGuard} from "@sanmix/api/app/common/auth.guard";
 import {ItemModule} from "@sanmix/api/app/item/item.module";
 import { CategoriesModule } from '../categories/categories.module';
 import { ClientModule } from './client/client.module';
+import { TaskModule } from './task/task.module';
+import { NotificationModule } from './notification/notification.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -22,6 +25,9 @@ import { ClientModule } from './client/client.module';
     ClientModule,
     FilesModule,
     CategoriesModule,
+    OrderModule,
+    TaskModule,
+    NotificationModule,
     ItemModule,
     JwtModule.register({
       global: true,

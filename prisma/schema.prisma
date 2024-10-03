@@ -30,7 +30,20 @@ model Client {
   email          String?  @unique
   isActive       Boolean  @default(true)
   registrationAt DateTime @default(now())
+  Orders         Order[]  // Зв'язок з таблицею замовлень
 }
+
+model Order {
+  id           Int       @id @default(autoincrement())
+  orderDate    DateTime  @default(now())
+  city         String
+  status       String
+  productNames String    // або String[] якщо потрібно зберігати список товарів
+  editedDate   DateTime? @updatedAt
+  userId       Int
+  Client       Client    @relation(fields: [userId], references: [id]) // Зв'язок з таблицею клієнтів
+}
+
 
 
 model Shop {
