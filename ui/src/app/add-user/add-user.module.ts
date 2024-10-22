@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +17,7 @@ import { AddUserComponent } from './add-user.component';
 import { ClientViewDialogComponent } from './client-view-dialog/client-view-dialog.component';
 import { ClientEditDialogComponent } from './client-edit-dialog/client-edit-dialog.component';
 import { ClientAddDialogComponent } from './client-add-dialog/client-add-dialog.component';
+import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ClientAddDialogComponent } from './client-add-dialog/client-add-dialog.
     ClientViewDialogComponent,
     ClientEditDialogComponent,
     ClientAddDialogComponent,
+    DeleteConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { ClientAddDialogComponent } from './client-add-dialog/client-add-dialog.
     MatCardModule,
     MatToolbarModule,
     MatPaginatorModule,
+    FormsModule
   ],
 })
 export class AddUserModule {}

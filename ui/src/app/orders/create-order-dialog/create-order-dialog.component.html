@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ data ? 'Редагувати замовлення' : 'Створити замовлення' }}</h2>
+<form [formGroup]="orderForm" (ngSubmit)="onCreateOrUpdate()">
+  <mat-form-field appearance="fill">
+    <mat-label>Дата замовлення</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="orderDate" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="orderForm.get('orderDate').hasError('required')">Введіть дату.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Місто</mat-label>
+    <input matInput formControlName="city" required>
+    <mat-error *ngIf="orderForm.get('city').hasError('required')">Введіть місто.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Статус</mat-label>
+    <input matInput formControlName="status" required>
+    <mat-error *ngIf="orderForm.get('status').hasError('required')">Введіть статус.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Назви товарів</mat-label>
+    <input matInput formControlName="productNames" required>
+    <mat-error *ngIf="orderForm.get('productNames').hasError('required')">Введіть назви товарів.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Клієнт</mat-label>
+    <input matInput [matAutocomplete]="auto" formControlName="userId" required (input)="filterClients($event.target.value)">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let client of filteredClients" [value]="client.id">
+        {{ client.firstName }} {{ client.lastName }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="orderForm.get('userId').hasError('required')">Виберіть клієнта.</mat-error>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Скасувати</button>
+    <button mat-button type="submit" color="primary">{{ data ? 'Зберегти' : 'Створити' }}</button>
+  </div>
+</form>

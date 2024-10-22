@@ -1,20 +1,8 @@
 
-.orders-page-container {
-  padding: 20px;
+.filter-container {
+  margin-bottom: 20px; /* Відступ між фільтрами та кнопкою */
 }
 
-.orders-toolbar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.orders-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.order-card {
-  width: 300px;
+.filter-container mat-form-field {
+  margin-right: 20px; /* Відступ між фільтрами */
 }

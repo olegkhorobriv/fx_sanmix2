@@ -31,14 +31,7 @@ const routes: Routes = [
       { path: 'users', loadChildren: () =>
           import('./users/users.module').then((m) => m.UsersModule)
       },
-
-
-      // { path: 'products', component: ProductsComponent },
-      // { path: 'products', loadChildren: () =>
-      //   import('./products/products.module').then(m => m.ProductsModule)
-      // },
-
-
+      
       { path: 'item', loadChildren: () =>
         import('./item/item.module').then(m => m.ItemModule)
       },

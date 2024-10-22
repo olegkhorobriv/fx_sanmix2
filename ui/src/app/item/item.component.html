@@ -33,13 +33,16 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let item">
-        <button mat-icon-button (click)="viewProduct(item)">
+        <button mat-icon-button color="primary" (click)="viewProduct(item)">
           <mat-icon>visibility</mat-icon>
         </button>
-        <button mat-icon-button (click)="editProduct(item)">
+        <button mat-icon-button color="accent" (click)="editProduct(item)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-button color="warn">Delete</button>
+        <button mat-icon-button color="warn" (click)="deleteProduct(item)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
       </td>
     </ng-container>
 

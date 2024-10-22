@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CategoryService } from '../../services/category.service';
 
-
 @Component({
   selector: 'app-add-category-dialog',
   template: `
@@ -13,12 +12,9 @@ import { CategoryService } from '../../services/category.service';
         <input matInput [(ngModel)]="data.name">
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Key</mat-label>
-        <input matInput type="number" [(ngModel)]="data.key">
-      </mat-form-field>
-      <mat-form-field>
         <mat-label>Parent Category</mat-label>
         <mat-select [(ngModel)]="data.parentId">
+          <mat-option [value]="0">Main Category</mat-option> <!-- Default to main category -->
           <mat-option *ngFor="let category of categories" [value]="category.id">
             {{ category.name }}
           </mat-option>
@@ -42,6 +38,10 @@ export class AddCategoryDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategories();
+    // Set default value for parentId to 0 (Main Category)
+    if (this.data.parentId === undefined) {
+      this.data.parentId = 0;
+    }
   }
 
   loadCategories(): void {
@@ -55,6 +55,6 @@ export class AddCategoryDialogComponent implements OnInit {
   }
 
   onSave(): void {
-    this.dialogRef.close(this.data);
+    this.dialogRef.close(this.data); // Pass the data with parentId (0 for main)
   }
 }

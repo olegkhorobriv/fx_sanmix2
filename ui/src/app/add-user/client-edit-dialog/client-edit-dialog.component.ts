@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'app-client-edit-dialog',
@@ -12,7 +13,8 @@ export class ClientEditDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ClientEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private clientService: ClientService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +29,14 @@ export class ClientEditDialogComponent implements OnInit {
 
   onSave(): void {
     if (this.editForm.valid) {
-      this.dialogRef.close(this.editForm.value);
+      this.clientService.updateClient(this.data.client.id, this.editForm.value).subscribe({
+        next: (updatedClient) => {
+          this.dialogRef.close(updatedClient);
+        },
+        error: (err) => {
+          console.error('Error updating client', err);
+        },
+      });
     }
   }
 }

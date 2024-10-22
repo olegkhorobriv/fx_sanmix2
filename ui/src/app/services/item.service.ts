@@ -14,20 +14,37 @@ export class ItemService {
     return this.http.get<Item[]>(this.apiUrl);
   }
 
- updateItem(item: Item): Observable<any> {
-  return this.http.put(`${this.apiUrl}/${item.id}`, item);
-}
+  addItem(item: Item): Observable<Item> {
+    return this.http.post<Item>(this.apiUrl, item);
+  }
+  
+  updateItem(item: Item): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${item.id}`, item);
+  }
+
+  deleteItem(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }
 
 export interface Item {
   id: string;
   code1C?: string;
   dealerCode?: string;
+  vendorId?: string;
   title: string;
   fullTitle?: string;
   description?: string;
+  comment?: string; // Додано
+  type?: string; // Додано
+  unit?: string; // Додано
+  tax?: number; // Змінено на number для відповідності
+  categoryId: number;
   price: number;
   stockCount: number;
-  categoryId: number;
-  vendorId?: string;
+  dealerId?: string;
+  createdAt?: Date; // Додано
+  updatedAt?: Date; // Додано
+  updatedBy?: number; // Додано
 }
+

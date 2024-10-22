@@ -24,10 +24,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { OrderFilterPipe } from './order-filter.pipe'; // Додано
 import { FormsModule } from '@angular/forms';
 // import { FileUploadComponent } from './file-upload/file-upload.component';
-import { AdminDashboardModule } from '@sanmix/ui/admin-dashboard/admin-dashboard.module';
+
 import { AuthGuard } from '@sanmix/ui/@common/utils/auth.guard';
 import { authInterceptorProviders } from '@sanmix/ui/@common/utils/auth.interceptor';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 
 @NgModule({
@@ -35,7 +36,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     AppComponent,
     LayoutComponent,
     OrderFilterPipe, // Додано
-
   ],
   imports: [
     MatToolbarModule,
@@ -54,7 +54,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatNativeDateModule,
     MatSelectModule,
     FormsModule,
-    AdminDashboardModule,
+
     MatProgressBarModule,
   ],
   providers: [AuthGuard, authInterceptorProviders],

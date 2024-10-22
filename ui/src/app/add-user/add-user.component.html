@@ -3,7 +3,7 @@
 <div>
   <mat-form-field appearance="fill" class="search-field">
     <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search clients">
+    <input matInput [(ngModel)]="filterValue" (keyup)="applyFilter()" placeholder="Search clients">
   </mat-form-field>
 
   <button mat-raised-button color="primary" class="add-user-button" (click)="openAddUserDialog()">Add User</button>

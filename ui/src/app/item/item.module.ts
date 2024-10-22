@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 // Angular Material Modules
@@ -20,12 +20,16 @@ import { ItemRoutingModule } from './item-routing.module';
 import { ItemService } from '../services/item.service';
 import { ItemDetailsDialogComponent } from './item-details-dialog/item-details-dialog.component';
 import { ItemEditDialogComponent } from './item-edit-dialog/item-edit-dialog.component';
+import { ItemAddDialogComponent } from './item-add-dialog/item-add-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     ItemsComponent,
     ItemDetailsDialogComponent,
     ItemEditDialogComponent,
+    ItemAddDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -39,12 +43,15 @@ import { ItemEditDialogComponent } from './item-edit-dialog/item-edit-dialog.com
     MatDialogModule,
     MatPaginatorModule,
     MatSortModule,
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+
   ],
   providers: [
     ItemService, // Сервіс для взаємодії з бекендом
   ],
-  entryComponents: [ItemDetailsDialogComponent,
-    ItemEditDialogComponent
-  ],
+  entryComponents: [ItemDetailsDialogComponent, ItemEditDialogComponent],
 })
 export class ItemModule {}

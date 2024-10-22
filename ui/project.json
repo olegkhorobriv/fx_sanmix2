@@ -30,6 +30,7 @@
           "@angular/material/prebuilt-themes/indigo-pink.css",
           "ui/src/styles.scss"
         ],
+        
         "scripts": [],
         "vendorChunk": true,
         "extractLicenses": false,

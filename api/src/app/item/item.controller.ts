@@ -5,26 +5,23 @@ import {
   Body,
   Param,
   Put,
+  Delete,
   NotFoundException,
   ParseUUIDPipe,
   UseGuards,
 } from '@nestjs/common';
-// import {Body, Controller, Get, Post, UseGuards,} from '@nestjs/common';
-import {Roles} from "@sanmix/api/app/common/roles.decorator";
-import {RolesEnum} from "@sanmix/ui/@common/roles.enum";
-import {ItemService} from "@sanmix/api/app/item/item.service";
-import {Import1CTable} from "../../../../@libs/models/common.model";
-import {AuthGuard} from "@sanmix/api/app/common/auth.guard";
+import { Roles } from "@sanmix/api/app/common/roles.decorator";
+import { RolesEnum } from "@sanmix/ui/@common/roles.enum";
+import { ItemService } from "@sanmix/api/app/item/item.service";
+import { Import1CTable } from "../../../../@libs/models/common.model";
+import { AuthGuard } from "@sanmix/api/app/common/auth.guard";
 import { Item } from '@prisma/client';
+import { CreateItemDto } from '../common/create-item.dto';
 
 @Controller('item')
 export class ItemController {
+  constructor(private service: ItemService) {}
 
-  constructor(
-      private service: ItemService
-  ) {
-  }
-  
   @Get()
   async getItems() {
     return this.service.getAllItems();
@@ -39,6 +36,10 @@ export class ItemController {
     return item;
   }
 
+  @Post()
+  async createItem(@Body() createData: CreateItemDto): Promise<Item> {
+    return this.service.createItem(createData);
+  }
 
   @Put(':id')
   async updateItem(
@@ -52,18 +53,15 @@ export class ItemController {
     return updatedItem;
   }
 
-
-
-
-
-
+  @Delete(':id')
+  async deleteItem(@Param('id', new ParseUUIDPipe()) id: string): Promise<void> {
+    await this.service.deleteItem(id);
+  }
 
   @Post('import1c')
   @UseGuards(AuthGuard)
   @Roles(RolesEnum.ADMIN, RolesEnum.MANAGER)
-  public async import1c(
-      @Body('data') data: Import1CTable[],
-  ) {
+  public async import1c(@Body('data') data: Import1CTable[]) {
     return await this.service.import1c(data);
   }
 }
